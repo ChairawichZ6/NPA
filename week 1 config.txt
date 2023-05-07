@@ -1,0 +1,92 @@
+Router
+conf ter
+ip dhcp pool vlan 200 
+network 10.6.200.0 255.255.255.0
+default-router 10.6.200.1
+dns-server 10.6.200.1
+exit
+
+int g0/0
+ip nat inside
+no sh
+exit
+int g0/0.100
+encapsulation dot1Q 100
+ip address 10.6.100.1 255.255.255.0
+ip nat inside
+no sh
+exit
+
+int g0/0.200
+encapsulation dot1Q 200
+ip address 10.6.200.1 255.255.255.0
+ip nat inside
+no sh
+exit
+
+int g0/1
+ip address 10.6.200.1 255.255.255.0
+no sh
+exit
+
+int g0/2
+ip address dhcp
+ip nat outside
+no sh
+exit
+
+router ospf 1
+router-id 6.6.6.6
+passive-interface g0/0
+passive-interface g0/2
+network 10.6.100.0 0.0.0.255 area 0
+network 10.6.200.0 0.0.0.255 area 0
+network 92.168.1.0 0.0.0.255 area 0
+exit
+
+ip nat inside source list 1 interface g0/2 overload
+access-list 1 permit any
+exit
+copy run start
+
+Swich
+conf ter
+vlan 100
+exit
+vlan 200
+exit
+
+int g0/0
+switchport mode access
+switchport access vlan 100
+negotiation auto
+exit
+int g0/1
+switchport mode access
+switchport access vlan 200
+negotiation auto
+exit
+
+int g0/2
+switchport mode trunk
+switchport trunk allowed vlan all
+switchport trunk encapsulation dot1q
+negotiation auto
+exit
+
+int vlan 100
+no ip add
+exit
+
+int vlan 200
+ip dhcp relay information trusted
+no ip address
+ip helper-address 10.6.200.1
+exit
+exit
+copy run start
+
+
+PC1
+ip 10.6.100.5/24 10.6.100.1
+save
