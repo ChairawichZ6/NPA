@@ -1,0 +1,10 @@
+configure terminal
+
+event manager applet INTERFACE_G01_DOWN
+
+event syslog pattern "Interface GigabitEthernet0/1, changed state to down"
+
+action 1.0 cli command "enable"
+action 2.0 cli command "configure terminal"
+action 3.0 cli command "interface g0/1"
+action 4.0 cli command "no shutdown"

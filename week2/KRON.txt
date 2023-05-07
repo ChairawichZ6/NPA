@@ -1,0 +1,5 @@
+kron policy-list backupconfig
+cli show run | redirect tftp://10.21.100.100/R02.cfg
+
+kron occurrence backupevery1min in 1 recurring
+policy-list backupconfig
