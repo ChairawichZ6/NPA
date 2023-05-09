@@ -3,8 +3,8 @@ import paramiko
 
 username = 'admin'
 
-devices_ip = ['172.31.102.1', '172.31.102.2', '172.31.102.3', \
-'172.31.102.4', '172.31.102.5', '172.31.102.6']
+devices_ip = ['172.31.106.1', '172.31.106.2', '172.31.106.3', \
+'172.31.106.4', '172.31.106.5', '172.31.106.6']
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -22,7 +22,7 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("int g0/1\n")
     time.sleep(1)
-    ssh.send("ip address 172.31.102.49 255.255.255.240\n")
+    ssh.send("ip address 172.31.106.49 255.255.255.240\n")
     time.sleep(1)
     ssh.send("no shut\n")
     time.sleep(1)
@@ -33,7 +33,7 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("router-id 3.3.3.3\n")
     time.sleep(1)
-    ssh.send("network 172.31.102.48 0.0.0.15 area 0\n")
+    ssh.send("network 172.31.106.48 0.0.0.15 area 0\n")
     time.sleep(1)
     ssh.send("network 3.3.3.3 0.0.0.0 area 0\n")
     time.sleep(1)
@@ -42,7 +42,7 @@ with client.invoke_shell() as ssh:
     
     ssh.send("ip nat inside source list 1 interface g0/2 vrf control-data overload\n")
     time.sleep(1)
-    ssh.send("access-list 1 permit 172.31.102.0 0.0.0.127\n")
+    ssh.send("access-list 1 permit 172.31.106.0 0.0.0.127\n")
     time.sleep(1)
     ssh.send("int g0/2\n")
     time.sleep(1)
@@ -53,7 +53,7 @@ with client.invoke_shell() as ssh:
     ssh.send("ip nat inside\n")
     time.sleep(1)
 
-    ssh.send("access-list 10 permit 172.31.102.0 0.0.0.15\n")
+    ssh.send("access-list 10 permit 172.31.106.0 0.0.0.15\n")
     time.sleep(1)
     ssh.send("access-list 10 permit 10.253.190.0 0.0.0.255\n")
     time.sleep(1)
@@ -75,13 +75,13 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("int g0/2\n")
     time.sleep(1)
-    ssh.send("ip address 172.31.102.50 255.255.255.240\n")
+    ssh.send("ip address 172.31.106.50 255.255.255.240\n")
     time.sleep(1)
     ssh.send("no shut\n")
     time.sleep(1)
     ssh.send("int g0/1\n")
     time.sleep(1)
-    ssh.send("ip address 172.31.102.33 255.255.255.240\n")
+    ssh.send("ip address 172.31.106.33 255.255.255.240\n")
     time.sleep(1)
     ssh.send("no shut\n")
     time.sleep(1)
@@ -89,14 +89,14 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("router-id 2.2.2.2\n")
     time.sleep(1)
-    ssh.send("network 172.31.102.48 0.0.0.15 area 0\n")
+    ssh.send("network 172.31.106.48 0.0.0.15 area 0\n")
     time.sleep(1)
-    ssh.send("network 172.31.102.32 0.0.0.15 area 0\n")
+    ssh.send("network 172.31.106.32 0.0.0.15 area 0\n")
     time.sleep(1)
     ssh.send("network 2.2.2.2 0.0.0.0 area 0\n")
     time.sleep(1)
 
-    ssh.send("access-list 10 permit 172.31.102.0 0.0.0.15\n")
+    ssh.send("access-list 10 permit 172.31.106.0 0.0.0.15\n")
     time.sleep(1)
     ssh.send("access-list 10 permit 10.253.190.0 0.0.0.255\n")
     time.sleep(1)
@@ -117,7 +117,7 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("int g0/2\n")
     time.sleep(1)
-    ssh.send("ip address 172.31.102.34 255.255.255.240\n")
+    ssh.send("ip address 172.31.106.34 255.255.255.240\n")
     time.sleep(1)
     ssh.send("no shut\n")
     time.sleep(1)
@@ -125,13 +125,13 @@ with client.invoke_shell() as ssh:
     time.sleep(1)
     ssh.send("router-id 1.1.1.1\n")
     time.sleep(1)
-    ssh.send("network 172.31.102.16 0.0.0.15 area 0\n")
+    ssh.send("network 172.31.106.16 0.0.0.15 area 0\n")
     time.sleep(1)
-    ssh.send("network 172.31.102.32 0.0.0.15 area 0\n")
+    ssh.send("network 172.31.106.32 0.0.0.15 area 0\n")
     time.sleep(1)
     ssh.send("network 1.1.1.1 0.0.0.0 area 0\n")
 
-    ssh.send("access-list 10 permit 172.31.102.0 0.0.0.15\n")
+    ssh.send("access-list 10 permit 172.31.106.0 0.0.0.15\n")
     time.sleep(1)
     ssh.send("access-list 10 permit 10.253.190.0 0.0.0.255\n")
     time.sleep(1)
