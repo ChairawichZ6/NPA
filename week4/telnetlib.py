@@ -2,7 +2,7 @@ import getpass
 import telnetlib
 import time
 
-host = "172.31.102.4"
+host = "172.31.106.4"
 user = input("Enter username: ")
 password = getpass.getpass()
 
@@ -22,7 +22,7 @@ time.sleep(1)
 tn.write(b"int g0/1\n")
 time.sleep(1)
 
-tn.write(b"ip address 172.31.102.17 255.255.255.240\n")
+tn.write(b"ip address 172.31.106.17 255.255.255.240\n")
 time.sleep(1)
 tn.write(b"no shut\n")
 time.sleep(1)
