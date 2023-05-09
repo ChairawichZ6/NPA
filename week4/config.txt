@@ -9,10 +9,10 @@ line vty 0 4 #  configura 5 virtual terminal line 0 - 4
 login local
 transport input telnet ssh  # allow telnet and ssh protocols
 int g0/0
-ip address 10.0.15.102 255.255.255.0
+ip address 10.0.15.106 255.255.255.0
 no shut
 int g0/1
-ip address 172.31.102.1 255.255.255.240
+ip address 172.31.106.1 255.255.255.240
 no shut
 ip route 0.0.0.0 0.0.0.0 10.0.15.1 # default route
 
@@ -20,48 +20,48 @@ R1
 conf ter
 hostname R1
 ip domain-name npa.com
-ip default-gateway 172.31.102.1
+ip default-gateway 172.31.106.1
 ip ssh version 2
 crypto key gen rsa mod 2048 # generate RSA key
 username admin privilege 15 password cisco
 line vty 0 4 #  configura 5 virtual terminal line 0 - 4
 login local
 transport input telnet ssh
-ip route 0.0.0.0 0.0.0.0 172.31.102.1 # default route
+ip route 0.0.0.0 0.0.0.0 172.31.106.1 # default route
 int g0/0
-ip address 172.31.102.4 255.255.255.240
+ip address 172.31.106.4 255.255.255.240
 no shut
 
 R2
 conf ter
 hostname R2
 ip domain-name npa.com
-ip default-gateway 172.31.102.1
+ip default-gateway 172.31.106.1
 ip ssh version 2
-crypto key gen rsa mod 2048 # generate RSA key
+crypto key gen rsa mod 2048
 username admin privilege 15 password cisco
 line vty 0 4 #  configura 5 virtual terminal line 0 - 4
 login local
 transport input telnet ssh
-ip route 0.0.0.0 0.0.0.0 172.31.102.1 # default route
+ip route 0.0.0.0 0.0.0.0 172.31.106.1
 int g0/0
-ip address 172.31.102.5 255.255.255.240
+ip address 172.31.106.5 255.255.255.240
 no shut
 
 R3
 conf ter
 hostname R3
 ip domain-name npa.com
-ip default-gateway 172.31.102.1
+ip default-gateway 172.31.106.1
 ip ssh version 2
 crypto key gen rsa mod 2048 # generate RSA key
 username admin privilege 15 password cisco
 line vty 0 4 #  configura 5 virtual terminal line 0 - 4
 login local
 transport input telnet ssh
-ip route 0.0.0.0 0.0.0.0 172.31.102.1 # default route
+ip route 0.0.0.0 0.0.0.0 172.31.106.1 # default route
 int g0/0
-ip address 172.31.102.6 255.255.255.240
+ip address 172.31.106.6 255.255.255.240
 no shut
 
 S0
@@ -69,7 +69,7 @@ en
 conf ter
 hostname S0
 no ip routing
-ip default-gateway 172.31.102.1
+ip default-gateway 172.31.106.1
 ip domain-name npa.com
 ip ssh version 2
 crypto key gen rsa mod 2048 # generate RSA key
@@ -80,7 +80,7 @@ transport input telnet ssh
 vlan 99
 name Management
 int vlan 99
-ip address 172.31.102.2 255.255.255.240
+ip address 172.31.106.2 255.255.255.240
 no shut
 int range g0/0 - 3 ,g1/0
 switchport access vlan 99
@@ -90,7 +90,7 @@ en
 conf ter
 hostname S1
 no ip routing
-ip default-gateway 172.31.102.1
+ip default-gateway 172.31.106.1
 ip domain-name npa.com
 ip ssh version 2
 crypto key gen rsa mod 2048 # generate RSA key
@@ -101,7 +101,7 @@ transport input telnet ssh
 vlan 99
 name Management
 int vlan 99
-ip address 172.31.102.3 255.255.255.240
+ip address 172.31.106.3 255.255.255.240
 no shut
 int range g0/0
 switchport access vlan 99
